@@ -1,0 +1,19 @@
+/* Wrapper for view perspective */
+.parallax-wrapper {
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* Dynamic perspective in JavaScript */
+}
+
+/* Container for parallax elements */
+.parallax-container {
+  position: relative;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+/* Parallax elements */
+.parallax-item {
+  position: absolute;
+}

@@ -1,0 +1,94 @@
+/* Variables */
+:root {
+  --sky-color: #000814;
+  --twilight-color: #1D2A3B;
+  --star-opacity: 0.8;
+}
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Full Viewport */
+body, html {
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Starry Sky */
+.sky-background {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at bottom, var(--twilight-color), var(--sky-color));
+}
+
+.star {
+  position: absolute;
+  top: var(--star-top);
+  left: var(--star-left);
+  width: var(--star-size);
+  height: var(--star-size);
+  overflow: visible;
+  pointer-events: none;
+  transform: rotate(var(--star-rotation)) translateZ(var(--star-distance));
+  animation: fade var(--star-duration) linear;
+}
+
+/* Star Glow */
+.star::before {
+  content: '';
+  position: absolute;
+  top: 0%;
+  bottom: 0%;
+  width: var(--star-size);
+  height: var(--star-size);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(var(--star-color), transparent 70%);
+}
+
+/* Star Rays */
+.star .ray {
+  position: absolute;
+  width: var(--ray-width);
+  height: var(--ray-height);
+  transform: translate(var(--ray-translate-x), var(--ray-translate-y)) rotate(var(--ray-angle));
+  clip-path: path(var(--ray-path));
+  background: radial-gradient(at bottom, var(--star-color), transparent 80%);
+}
+
+/* Animations */
+@keyframes fade {
+  0% {
+    opacity: 0;
+    filter: brightness(1);
+  }
+  20% {
+    opacity: var(--star-opacity);
+    filter: brightness(1);
+  }
+  45% {
+    opacity: var(--star-opacity);
+    filter: brightness(1);
+  }
+  50% {
+    opacity: 1;
+    filter: brightness(2);
+  }
+  55%{
+    opacity: var(--star-opacity);
+    filter: brightness(1);
+  }
+  80% {
+    opacity: var(--star-opacity);
+    filter: brightness(1);
+  }
+  100% {
+    opacity: 0;
+    filter: brightness(1);
+  }
+}
