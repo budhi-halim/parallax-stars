@@ -262,7 +262,7 @@ function starContainerProperties() {
   // Container edge positions
   leftStarContainer = Math.min(0, posX - viewportWidth * STAR_CREATION_VERTICAL_BUFFER);
   rightStarContainer = clamp(posX + viewportWidth, posX + viewportWidth * (STAR_CREATION_HORIZONTAL_BUFFER + 1), containerWidth);
-  topStarContainer = Math.min(0, posY - viewportHeight * STAR_CREATION_VERTICAL_BUFFER);
+  topStarContainer = Math.max(0, posY - viewportHeight * STAR_CREATION_VERTICAL_BUFFER);
   bottomStarContainer = clamp(posY + viewportHeight, posY + viewportHeight * (STAR_CREATION_VERTICAL_BUFFER + 1), containerHeight);
 
   const containerArea = (rightStarContainer - leftStarContainer) * (bottomStarContainer - topStarContainer);
@@ -281,7 +281,7 @@ function createStar() {
 
   // Random distance
   const distanceFactor = randomRange(MIN_STAR_DISTANCE_FACTOR, MAX_STAR_DISTANCE_FACTOR, STAR_DISTANCE_FACTOR_PRECISION);
-  const distance = PARALLAX_WRAPPER_PERSPECTIVE * (distanceFactor - 1);
+  const distance = Math.round(PARALLAX_WRAPPER_PERSPECTIVE * (distanceFactor - 1));
   star.style.setProperty(STAR_DISTANCE, `-${distance}px`);
 
   // Random position
